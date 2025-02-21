@@ -1,35 +1,49 @@
 #include <stdio.h>
 #include "board.h"
 
-// Inicializa o tabuleiro com 0 (representando água)
+/*
+ * Função: inicializaTabuleiro
+ * ----------------------------
+ * Percorre cada célula do tabuleiro e atribui o valor 0,
+ * indicando que a célula está cheia de água.
+ */
 void inicializaTabuleiro(int board[BOARD_SIZE][BOARD_SIZE]) {
-    int i, j; // Variáveis de controle para os loops
+    int i, j;
+    // Loop para cada linha do tabuleiro
     for (i = 0; i < BOARD_SIZE; i++) {
+        // Loop para cada coluna da linha atual
         for (j = 0; j < BOARD_SIZE; j++) {
-            board[i][j] = 0;
+            board[i][j] = 0;  // 0 representa água
         }
     }
 }
 
-// Exibe o tabuleiro com identificadores (colunas de A a J e linhas de 1 a 10)
+/*
+ * Função: imprimeTabuleiro
+ * -------------------------
+ * Exibe o tabuleiro no console com um cabeçalho para as colunas
+ * (convertendo índices em letras) e para as linhas (numeradas de 1 a 10).
+ * Percorre a matriz e imprime cada valor.
+ */
 void imprimeTabuleiro(int board[BOARD_SIZE][BOARD_SIZE]) {
     int i, j;
-    // Imprime o cabeçalho para as colunas (A a J)
-    printf("    "); // Espaço extra para alinhar com os números/letras das linhas
+    
+    // Imprime o cabeçalho das colunas
+    printf("    ");
     for (j = 0; j < BOARD_SIZE; j++) {
-        // Imprime cada coluna como uma letra (A, B, C, ...), convertendo o índice em caractere
+        // Converte o índice da coluna em letra (0 -> A, 1 -> B, etc.)
         printf(" %c", 'A' + j);
     }
     printf("\n");
-
-    // Imprime cada linha do tabuleiro com seus respectivos números
+    
+    // Imprime cada linha do tabuleiro
     for (i = 0; i < BOARD_SIZE; i++) {
-        // Verifica se o número da linha é menor que 10 para manter o alinhamento (1-9 vs. 10)
+        // Formata o número da linha para manter o alinhamento
         if (i + 1 < 10)
             printf(" %d  ", i + 1);
         else
             printf("%d  ", i + 1);
-        // Imprime os valores de cada coluna da linha
+        // Imprime os valores de cada coluna na linha atual
         for (j = 0; j < BOARD_SIZE; j++) {
             printf(" %d", board[i][j]);
         }
